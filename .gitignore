@@ -1,0 +1,28 @@
+# binaries
+*.exe
+*.out
+*.dll
+
+# Go build
+/go.sum
+/go.work
+
+# IDE
+.idea/
+.vscode/
+
+# vendor (если не используешь)
+vendor/
+
+# OS files
+.DS_Store
+
+# logs
+*.log
+
+# artifacts
+bin/
+tmp/
+
+# docker-compose volumes
+pgdata/
