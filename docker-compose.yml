@@ -1,0 +1,31 @@
+
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: reviewers
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d reviewers"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+
+  app:
+    image: golang:1.23
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: ["go", "run", "./cmd/app"]
+    environment:
+       DB_DSN: "postgres://app:app@db:5432/reviewers?sslmode=disable"
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy

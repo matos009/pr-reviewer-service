@@ -1,0 +1,31 @@
+run:
+  timeout: 3m
+  tests: true
+
+linters:
+  enable:
+    - govet        # поиск ошибок в конструкции кода
+    - errcheck     # проверка обработки ошибок
+    - staticcheck  # статический анализ, поиск багов
+    - unused       # поиск неиспользуемых переменных/функций
+    - gosimple     # упрощение конструкций
+    - revive       # стиль, формат, best practices
+    - exportloopref # ловит ошибки замыкания в цикле
+    - gofmt        # проверка форматирования
+    - gofumpt      # строгий форматер 
+    - gocyclo      # контроль сложности функций
+    - dupl         # поиск дублирующегося кода
+    - misspell     # опечатки в комментариях
+    - whitespace   # лишние пробелы/пустые строки
+
+linters-settings:
+  gocyclo:
+    min-complexity: 15
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - errcheck
+  exclude:
+    - "should have comment" 

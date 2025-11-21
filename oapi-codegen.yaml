@@ -1,0 +1,6 @@
+package: handlers
+generate:
+  chi-server: true
+  models: true
+  strict-server: true
+output: internal/http/handlers/openapi_gen.go
